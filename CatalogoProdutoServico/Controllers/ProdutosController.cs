@@ -19,14 +19,14 @@ namespace CatalogoProdutoServico.Controllers
             _mongoContext = mongoContext;
         }
 
-        [HttpGet("Produtos")]
+        [HttpGet("Todos")]
         public async Task<ActionResult<IEnumerable<Produto>>> GetProdutos()
         {
             var produtos = await _mongoContext.Produtos.Find(_ => true).ToListAsync();
             return Ok(produtos);
         }
 
-        [HttpGet("Produto/{id}")]
+        [HttpGet("BuscarPorId/{id}")]
         public async Task<ActionResult<IEnumerable<Produto>>> GetProduto(int id)
         {
             var filter = Builders<Produto>.Filter.Eq(p => p.Id, id);
